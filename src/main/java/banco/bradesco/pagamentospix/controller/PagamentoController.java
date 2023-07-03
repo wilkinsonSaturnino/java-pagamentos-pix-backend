@@ -75,10 +75,8 @@ public class PagamentoController {
 				.orElseThrow(() -> new ResourceNotFoundException("[atualizarPagamento] Não existe um pagamento com o id: " + idPagamento));
 		
 		pagamento.setChavePix(pagamentoDetails.getChavePix());
-		pagamento.setCpf(pagamentoDetails.getCpf());
 		pagamento.setDataPagamento(pagamentoDetails.getDataPagamento());
 		pagamento.setDescricao(pagamentoDetails.getDescricao());
-		pagamento.setNomeDestinatario(pagamentoDetails.getNomeDestinatario());
 		pagamento.setValor(pagamentoDetails.getValor());
 		pagamento.setPessoa(pessoa);
 		

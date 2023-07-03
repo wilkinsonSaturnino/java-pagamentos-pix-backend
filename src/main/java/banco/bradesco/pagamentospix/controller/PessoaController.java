@@ -55,9 +55,7 @@ public class PessoaController {
 				.orElseThrow(() -> new ResourceNotFoundException("[atualizarPessoa] Não existe um usuário com o id: " + id));
 		
 		pessoa.setNome(pessoaDetails.getNome());
-		pessoa.setAgencia(pessoaDetails.getAgencia());
-		pessoa.setConta(pessoaDetails.getConta());
-		pessoa.setDigito(pessoaDetails.getDigito());
+		pessoa.setCpf(pessoaDetails.getCpf());
 		
 		Pessoa pessoaUpdate = pessoaRepository.save(pessoa);
 		return ResponseEntity.ok(pessoaUpdate);

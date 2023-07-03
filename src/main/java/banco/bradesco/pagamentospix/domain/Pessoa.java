@@ -28,30 +28,25 @@ public class Pessoa implements Serializable {
 	@Column(name = "nome")
 	private String nome;
 	
-	@Column(name = "agencia")
-	private Integer agencia;
-	
-	@Column(name = "conta")
-	private Integer conta;
-	
-	@Column(name = "digito")
-	private Integer digito;
+	@Column(name = "cpf")
+	private String cpf;
 	
 	@JsonManagedReference // Serializa a propriedade anotada (referência direta)
 	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.REMOVE)
 	private List<Pagamento> pagamentos;
 
+	@JsonManagedReference // Serializa a propriedade anotada (referência direta)
+	@OneToMany(mappedBy = "pessoa", cascade = CascadeType.REMOVE)
+	private List<Conta> contas;
 	
 	// Gets and Sets
 	
 	public Pessoa() {}
 	
-	public Pessoa(String nome, Integer agencia, Integer conta, Integer digito) {
+	public Pessoa(String nome, String cpf) {
 		super();
 		this.nome = nome;
-		this.agencia = agencia;
-		this.conta = conta;
-		this.digito = digito;
+		this.cpf = cpf;
 	}
 
 	public long getId() {
@@ -70,28 +65,12 @@ public class Pessoa implements Serializable {
 		this.nome = nome;
 	}
 
-	public Integer getAgencia() {
-		return agencia;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setAgencia(Integer agencia) {
-		this.agencia = agencia;
-	}
-
-	public Integer getConta() {
-		return conta;
-	}
-
-	public void setConta(Integer conta) {
-		this.conta = conta;
-	}
-
-	public Integer getDigito() {
-		return digito;
-	}
-
-	public void setDigito(Integer digito) {
-		this.digito = digito;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public List<Pagamento> getPagamentos() {
@@ -100,6 +79,14 @@ public class Pessoa implements Serializable {
 
 	public void setPagamentos(List<Pagamento> pagamentos) {
 		this.pagamentos = pagamentos;
+	}
+
+	public List<Conta> getContas() {
+		return contas;
+	}
+
+	public void setContas(List<Conta> contas) {
+		this.contas = contas;
 	}
 
 }

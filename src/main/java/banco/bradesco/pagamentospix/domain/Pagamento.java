@@ -29,12 +29,6 @@ public class Pagamento implements Serializable {
 	@Column(name = "id")
 	private long id;
 	
-	@Column(name = "nome_destinatario")
-	private String nomeDestinatario;
-	
-	@Column(name = "cpf")
-	private String cpf;
-	
 	@Column(name = "chave_pix")
 	private String chavePix;
 	
@@ -49,19 +43,16 @@ public class Pagamento implements Serializable {
 		
 	@JsonBackReference // Ignora a serialização da propriedade anotada
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(foreignKey = @ForeignKey(name = "pessoa_fkey"))
+	@JoinColumn(foreignKey = @ForeignKey(name = "pessoa_pagamento_fkey"))
 	private Pessoa pessoa;
 
-	
 	// Gets and Sets
 	
 	public Pagamento() {}
 	
-	public Pagamento(String nomeDestinatario, String cpf, String chavePix, BigDecimal valor,
+	public Pagamento(String chavePix, BigDecimal valor,
 			LocalDate dataPagamento, String descricao) {
 		super();
-		this.nomeDestinatario = nomeDestinatario;
-		this.cpf = cpf;
 		this.chavePix = chavePix;
 		this.valor = valor;
 		this.dataPagamento = dataPagamento;
@@ -74,22 +65,6 @@ public class Pagamento implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getNomeDestinatario() {
-		return nomeDestinatario;
-	}
-
-	public void setNomeDestinatario(String nomeDestinatario) {
-		this.nomeDestinatario = nomeDestinatario;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
 	}
 
 	public String getChavePix() {
